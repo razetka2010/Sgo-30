@@ -1,0 +1,564 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #fff;
+  padding: 15px 10%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+header .user-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+header .user-info i {
+  margin: 0 10px;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+}
+
+main {
+  padding: 20px 0;
+  display: flex;
+  flex: 1; /* Flexbox для фиксации подвала */
+}
+
+aside {
+  background-color: #fff;
+  padding: 20px;
+  border-right: 1px solid #eee;
+  width: 25%;
+}
+
+aside nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+aside nav ul li {
+  margin-bottom: 15px;
+}
+
+aside nav ul li a {
+  color: #333;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+aside nav ul li a i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+aside nav ul li a:hover {
+  color: #007bff;
+}
+
+.main-content {
+  padding: 20px;
+  width: 75%;
+}
+
+section {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* User table styles */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}
+
+.user-table button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.user-table button:hover {
+  background-color: #c82333;
+}
+
+/* Add User */
+#add-user-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 20px;
+}
+
+#add-user-form input,
+#add-user-form select {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+#add-user-form input:focus,
+#add-user-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+#add-user-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+#add-user-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Edit User Modal */
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+.modal-content .close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content .close-button:hover,
+.modal-content .close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#edit-user-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#edit-user-form input,
+#edit-user-form select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+#edit-user-form input:focus,
+#edit-user-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+#edit-user-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+#edit-user-form button:hover {
+  background-color: #0056b3;
+}
+
+.schedule-admin-container {
+  padding: 20px;
+}
+
+#add-schedule-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 20px;
+}
+
+#add-schedule-form input,
+#add-schedule-form select {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+#add-schedule-form input:focus,
+#add-schedule-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+#add-schedule-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+#add-schedule-form button:hover {
+  background-color: #0056b3;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.schedule-table th {
+  background-color: #f2f2f2;
+}
+
+/* Edit Schedule Modal */
+#edit-schedule-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#edit-schedule-form input,
+#edit-schedule-form select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+#edit-schedule-form input:focus,
+#edit-schedule-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+#edit-schedule-form button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+#edit-schedule-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для подвала (footer) */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Стили для адаптивности */
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  main {
+      flex-direction: column;
+  }
+
+  aside {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #eee;
+  }
+
+  aside nav ul li {
+      margin-bottom: 10px;
+  }
+
+  .main-content {
+      width: 100%;
+  }
+
+  #add-user-form {
+      width: 100%;
+  }
+
+  #add-schedule-form {
+      width: 100%;
+  }
+}
+
+/* Стили для поиска*/
+#user-search {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 40%;
+  transition: border-color 0.3s ease;
+  margin-right: auto;
+  margin-left: 0;
+}
+
+#user-search:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Стили для афишы в админке */
+.affiche-admin-container {
+  padding: 20px;
+}
+
+#add-affiche-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 20px;
+}
+
+#add-affiche-form input,
+#add-affiche-form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+#add-affiche-form input:focus,
+#add-affiche-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+#add-affiche-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+#add-affiche-form button:hover {
+  background-color: #0056b3;
+}
+
+.affichelist-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.affichelist-table th,
+.affichelist-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.affichelist-table th {
+  background-color: #f2f2f2;
+}
+
+/* Edit Affiche Modal */
+#edit-affiche-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#edit-affiche-form input,
+#edit-affiche-form textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+#edit-affiche-form input:focus,
+#edit-affiche-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+#edit-affiche-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+#edit-affiche-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Student fields inside forms */
+.student-fields {
+  display: none; /* Hidden by default */
+}
+
+/* Стили для фильтров расписания */
+.schedule-admin-container .filter-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.schedule-admin-container .filter-container label {
+  font-weight: bold;
+}
+
+.schedule-admin-container .filter-container select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: auto;  /* Автоматическая ширина */
+  flex-grow: 1;  /* Растягивается для заполнения пространства */
+  max-width: 200px; /* Предотвращает слишком большое растяжение */
+  transition: border-color 0.3s ease;
+}
+
+.schedule-admin-container .filter-container select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Адаптивность для фильтров */
+@media (max-width: 768px) {
+  .schedule-admin-container .filter-container {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .schedule-admin-container .filter-container select {
+      width: 100%;  /* Фильтры на всю ширину на мобильных */
+      max-width: none; /* Убираем максимальную ширину */
+  }
+}

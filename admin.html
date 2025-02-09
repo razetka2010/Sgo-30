@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Север - Админ Панель</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="" alt="Логотип Мой Север" class="logo-img">
+            <h1>Мой Север</h1>
+        </div>
+        <div class="user-info">
+            <i class="fa fa-user"></i>
+            <span class="username" id="userNameDisplay"></span>
+            <i class="fas fa-sign-out-alt" id="logoutButton"></i>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <aside>
+                <nav>
+                    <ul>
+                        <li><a href="#users"><i class="fas fa-users"></i> Пользователи</a></li>
+                        <li><a href="#add-user"><i class="fas fa-user-plus"></i> Добавить пользователя</a></li>
+                        <li><a href="#schedule-admin"><i class="fas fa-calendar-alt"></i> Расписание</a></li>
+                        <li><a href="#affiche-admin"><i class="fas fa-calendar-alt"></i> Афиша</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <section class="main-content">
+                <section id="users">
+                    <h2>Список пользователей</h2>
+                    <input type="text" id="user-search" placeholder="Поиск по логину">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Логин</th>
+                                <th>Роль</th>
+                                <th>Класс</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-list">
+                        </tbody>
+                    </table>
+                    <div id="edit-user-modal" class="modal" style="display: none;">
+                        <div class="modal-content">
+                            <span class="close-button">&times;</span>
+                            <h2>Редактировать пользователя</h2>
+                            <form id="edit-user-form">
+                                <input type="hidden" id="edit-user-index">
+                                <input type="text" id="edit-username" placeholder="Логин" required>
+                                <input type="password" id="edit-password" placeholder="Пароль" required>
+                                <select id="edit-user-role" required>
+                                    <option value="student">Ученик</option>
+                                    <option value="teacher">Учитель</option>
+                                    <option value="admin">Админ</option>
+                                </select>
+                                <div class="student-fields">
+                                    <input type="text" id="edit-user-class" placeholder="Класс">
+                                    <input type="text" id="edit-user-letter" placeholder="Буква">
+                                </div>
+                                <button type="submit">Сохранить</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <section id="add-user" style="display: none;">
+                    <h2>Добавить пользователя</h2>
+                    <form id="add-user-form">
+                        <input type="text" id="new-username" placeholder="Логин" required>
+                        <input type="password" id="new-password" placeholder="Пароль" required>
+                        <select id="new-user-role" required>
+                            <option value="student">Ученик</option>
+                            <option value="teacher">Учитель</option>
+                            <option value="admin">Админ</option>
+                        </select>
+                        <div class="student-fields">
+                            <input type="text" id="new-user-class" placeholder="Класс">
+                            <input type="text" id="new-user-letter" placeholder="Буква">
+                        </div>
+                        <button type="submit">Добавить</button>
+                    </form>
+                </section>
+                <section id="schedule-admin" style="display: none;">
+                    <h2>Управление расписанием</h2>
+                    <div class="schedule-admin-container">
+                        <h3>Добавить урок</h3>
+                        <form id="add-schedule-form">
+                            <input type="text" id="new-schedule-subject" placeholder="Предмет" required>
+                            <input type="text" id="new-schedule-teacher" placeholder="Учитель" required>
+                            <input type="time" id="new-schedule-start-time" required>
+                            <input type="time" id="new-schedule-end-time" required>
+                            <select id="new-schedule-day" required>
+                                <option value="">-- Выберите день недели --</option>
+                                <option value="Понедельник">Понедельник</option>
+                                <option value="Вторник">Вторник</option>
+                                <option value="Среда">Среда</option>
+                                <option value="Четверг">Четверг</option>
+                                <option value="Пятница">Пятница</option>
+                            </select>
+                            <input type="text" id="new-schedule-class" placeholder="Класс" required>
+                            <input type="text" id="new-schedule-letter" placeholder="Буква" required>
+                            <button type="submit">Добавить</button>
+                        </form>
+                        <div class="filter-container">
+                          <label for="schedule-class-filter">Класс:</label>
+                           <select id="schedule-class-filter"></select>
+                      </div>
+                     <div class="filter-container">
+                           <label for="schedule-day-filter">День недели:</label>
+                           <select id="schedule-day-filter"></select>
+                      </div>
+                        <h3>Список уроков</h3>
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Предмет</th>
+                                    <th>Учитель</th>
+                                    <th>Время начала</th>
+                                    <th>Время конца</th>
+                                    <th>День недели</th>
+                                    <th>Класс</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="schedule-list">
+                            </tbody>
+                        </table>
+                        <div id="edit-schedule-modal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close-button">&times;</span>
+                                <h2>Редактировать урок</h2>
+                                <form id="edit-schedule-form">
+                                    <input type="hidden" id="edit-schedule-index">
+                                    <input type="text" id="edit-schedule-subject" placeholder="Предмет" required>
+                                    <input type="text" id="edit-schedule-teacher" placeholder="Учитель" required>
+                                    <input type="time" id="edit-schedule-start-time" required>
+                                    <input type="time" id="edit-schedule-end-time" required>
+                                    <select id="edit-schedule-day" required>
+                                        <option value="">-- Выберите день недели --</option>
+                                        <option value="Понедельник">Понедельник</option>
+                                        <option value="Вторник">Вторник</option>
+                                        <option value="Среда">Среда</option>
+                                        <option value="Четверг">Четверг</option>
+                                        <option value="Пятница">Пятница</option>
+                                    </select>
+                                    <input type="text" id="edit-schedule-class" placeholder="Класс" required>
+                                    <input type="text" id="edit-schedule-letter" placeholder="Буква" required>
+                                    <button type="submit">Сохранить</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="affiche-admin" style="display: none;">
+                    <h2>Управление афишей</h2>
+                    <div class="affiche-admin-container">
+                        <h3>Добавить мероприятие</h3>
+                        <form id="add-affiche-form">
+                            <input type="text" id="new-affiche-title" placeholder="Название" required>
+                            <textarea id="new-affiche-description" placeholder="Описание" required></textarea>
+                            <input type="text" id="new-affiche-date" placeholder="Дата" required>
+                            <button type="submit">Добавить</button>
+                        </form>
+                        <table class="affichelist-table">
+                            <thead>
+                                <tr>
+                                    <th>Название</th>
+                                    <th>Описание</th>
+                                    <th>Дата</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="affiche-list-admin">
+                            </tbody>
+                        </table>
+                        <div id="edit-affiche-modal" class="modal" style="display: none;">
+                            <div class="modal-content">
+                                <span class="close-button">&times;</span>
+                                <h2>Редактировать мероприятие</h2>
+                                <form id="edit-affiche-form">
+                                    <input type="hidden" id="edit-affiche-index">
+                                    <input type="text" id="edit-affiche-title" placeholder="Название" required>
+                                    <textarea id="edit-affiche-description" placeholder="Описание" required></textarea>
+                                    <input type="text" id="edit-affiche-date" placeholder="Дата" required>
+                                    <button type="submit">Сохранить</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Мой Север - Админ Панель</p>
+    </footer>
+    <script src="admin.js"></script>
+</body>
+
+</html>

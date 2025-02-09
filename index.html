@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Север - Электронный Дневник</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="" alt="Логотип Мой Север" class="logo-img">
+            <h1>Мой Север</h1>
+        </div>
+        <div class="user-info">
+          <i class="fa fa-user"></i>
+          <span class="username" id="userNameDisplay"></span>
+            <i class="fas fa-sign-out-alt" id="logoutButton"></i>
+        </div>
+    </header>
+    <main>
+      <div class="container">
+        <aside>
+          <nav id = "navigation-menu">
+              <ul>
+                <!-- Общие элементы меню -->
+                <li><a href="#dashboard"><i class="fas fa-home"></i> Главная</a></li>
+                  <!-- Элементы меню ученика -->
+                 <li class="student-item"><a href="#marks"><i class="fas fa-graduation-cap"></i> Оценки</a></li>
+                 <li class="student-item"><a href="#schedule"><i class="fas fa-calendar-alt"></i> Расписание</a></li>
+                  <li class="student-item"><a href="#homework"><i class="fas fa-book"></i> Домашнее задание</a></li>
+                  <li class="student-item"><a href="#messages"><i class="fas fa-envelope"></i> Сообщения</a></li>
+                  <!-- Элементы меню учителя -->
+                  <li class="teacher-item"><a href="#class-journal"><i class="fas fa-list-alt"></i> Классный журнал</a></li>
+                 <li class="teacher-item"><a href="#teacher-messages"><i class="fas fa-envelope"></i> Сообщения</a></li>
+                  <li class="teacher-item"><a href="#add-homework"><i class="fas fa-plus-circle"></i> Добавить дз</a></li>
+              </ul>
+          </nav>
+        </aside>
+        <section class="main-content">
+            <section id="dashboard">
+                <h2>Главная</h2>
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <h3>Последние оценки</h3>
+                        <ul id="dashboard-marks">
+                           
+                        </ul>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Предстоящие события</h3>
+                         <ul>
+                            <li>Контрольная по алгебре</li>
+                            <li>Классный час</li>
+                            <li>Соревнование</li>
+                        </ul>
+                    </div>
+                     <div class="dashboard-card">
+                        <h3>Новости</h3>
+                         <ul>
+                             <li>Новость 1</li>
+                            <li>Новость 2</li>
+                         </ul>
+                    </div>
+                     <div class="dashboard-card">
+                        <h3>Афиша</h3>
+                         <div class="affiche-list" id="affiche-list">
+                         </div>
+                     </div>
+                </div>
+             </section>
+
+            <section id="marks" style="display: none;">
+                <h2>Оценки</h2>
+                <div class="marks-table">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>Предмет</th>
+                                <th>Оценка</th>
+                            </tr>
+                        </thead>
+                         <tbody id="student-marks-table">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+             <section id="schedule" style="display: none;">
+                <h2>Расписание</h2>
+                <div class="schedule-table">
+                 <table>
+                       <thead>
+                            <tr>
+                                <th>Время</th>
+                                <th>Предмет</th>
+                                <th>Учитель</th>
+                            </tr>
+                        </thead>
+                      <tbody id="student-schedule">
+                    </tbody>
+                   </table>
+                </div>
+             </section>
+            <section id="homework" style="display: none;">
+               <h2>Домашнее задание</h2>
+               <div class="homework-list">
+                   
+                </div>
+            </section>
+             <section id="messages" style="display: none;">
+                <h2>Сообщения</h2>
+                 <div class="chat-container">
+                     <div class="chat-list">
+                        <ul id="chat-contacts">
+                          </ul>
+                       </div>
+                     <div class="chat-box">
+                       <div class="chat-header">
+                           <h3 id="chat-recipient">Выберите контакт</h3>
+                       </div>
+                         <div class="message-area" id="message-area">
+
+                        </div>
+                            <div class="message-input-area">
+                             <form id="message-form">
+                               <input type="text" id="message-input" placeholder="Введите сообщение" required>
+                                 <button type="submit">Отправить</button>
+                            </form>
+                      </div>
+                     </div>
+                 </div>
+            </section>
+
+        <!-- Учительские страницы -->
+           <section id="class-journal" style="display: none;">
+                <h2>Классный журнал</h2>
+                 <div class="class-journal-table">
+                     <form id="add-mark-form">
+                         <select id="student-select" required>
+                              <option value="">-- Выберите ученика --</option>
+                           </select>
+                       <input type="text" id="mark-subject" placeholder="Предмет" required>
+                       <input type="number" id="mark-value" placeholder="Оценка" min="1" max="5" required>
+                       <button type="submit">Поставить</button>
+                  </form>
+                     <table>
+                      <thead>
+                         <tr>
+                                <th>Ученик</th>
+                                <th>Предмет</th>
+                                <th>Оценка</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacher-marks-table">
+                       </tbody>
+                    </table>
+                </div>
+           </section>
+           <section id="teacher-messages" style="display: none;">
+                 <h2>Сообщения</h2>
+                <div class="chat-container">
+                     <div class="chat-list">
+                        <ul id="chat-contacts-teacher">
+                          </ul>
+                       </div>
+                     <div class="chat-box">
+                       <div class="chat-header">
+                           <h3 id="chat-recipient-teacher">Выберите контакт</h3>
+                       </div>
+                         <div class="message-area" id="message-area-teacher">
+
+                        </div>
+                            <div class="message-input-area">
+                             <form id="message-form-teacher">
+                               <input type="text" id="message-input-teacher" placeholder="Введите сообщение" required>
+                                 <button type="submit">Отправить</button>
+                            </form>
+                      </div>
+                     </div>
+                 </div>
+            </section>
+           <section id="add-homework" style="display: none;">
+               <h2>Добавить дз</h2>
+              <div class="add-homework-form">
+                  <form id="homework-form">
+                        <input type="text" id="subject" placeholder="Предмет" required>
+                         <textarea id="homework-text" placeholder="Домашнее задание" required></textarea>
+                         <input type="file" id="homework-file" accept=".pdf,.doc,.docx,.jpg,.png">
+                        <button type="submit">Добавить</button>
+                    </form>
+                 </div>
+            </section>
+         </section>
+      </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Мой Север - Электронный Дневник</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
