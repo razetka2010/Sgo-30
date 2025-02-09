@@ -5,7 +5,7 @@ body {
   padding: 0;
   color: #333;
   background-color: #f4f4f4;
-  display: flex;  /* Flexbox для фиксации подвала */
+  display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
@@ -80,7 +80,7 @@ header .user-info i {
 main {
   padding: 20px 0;
   display: flex;
-  flex: 1;  /* Flexbox для фиксации подвала */
+  flex: 1;
 }
 
 aside {
@@ -460,6 +460,25 @@ textarea:focus {
       width: 100%;
       border-right: none;
       border-bottom: 1px solid #eee;
+  }
+
+  aside nav {
+      display: none;
+  }
+
+  aside nav.show {
+      display: block;
+  }
+
+  .menu-button {
+      display: block;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
   }
 
   aside nav ul li {
