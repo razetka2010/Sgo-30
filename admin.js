@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navigationMenu = document.querySelector('aside nav ul');
     const userNameDisplay = document.getElementById('userNameDisplay');
     const editUserModal = document.getElementById('edit-user-modal');
-    const closeButton = document.querySelectorAll('.modal .close-button'); // Исправление
+    const closeButton = document.querySelectorAll('.modal .close-button');
     const editUserForm = document.getElementById('edit-user-form');
     const newClassSelect = document.getElementById('new-user-class');
     const newLetterSelect = document.getElementById('new-user-letter');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeAfficheButton = document.querySelector('#edit-affiche-modal .close-button');
     const editAfficheForm = document.getElementById('edit-affiche-form');
 
-   const scheduleClassFilter = document.getElementById('schedule-class-filter');
+    const scheduleClassFilter = document.getElementById('schedule-class-filter');
     const scheduleDayFilter = document.getElementById('schedule-day-filter');
 
     userNameDisplay.textContent = username;
@@ -47,6 +47,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             document.getElementById(targetId).style.display = 'block';
         });
+    });
+
+    // Добавляем кнопку для открытия/закрытия меню
+    const menuButton = document.createElement('button');
+    menuButton.innerHTML = '<i class="fas fa-bars"></i> Меню'; // Используйте Font Awesome или другой значок
+    menuButton.classList.add('menu-button');
+    document.querySelector('aside').insertBefore(menuButton, document.querySelector('aside nav')); // Вставьте кнопку перед навигацией
+
+    // Функция для открытия/закрытия меню
+    menuButton.addEventListener('click', function() {
+        document.querySelector('aside nav').classList.toggle('show');
     });
 
     // Проверяем, если пользователь не админ, перенаправляем на страницу входа
@@ -202,36 +213,36 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Добавляем option для выбора класса
-  function populateClassFilter() {
-        const classes = ['Все','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+    function populateClassFilter() {
+        const classes = ['Все', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
         classes.forEach(cls => {
-           const option = document.createElement('option');
-                option.value = cls;
-                option.textContent = cls === 'Все' ? 'Все классы' : `Класс ${cls}`;
-               scheduleClassFilter.appendChild(option);
+            const option = document.createElement('option');
+            option.value = cls;
+            option.textContent = cls === 'Все' ? 'Все классы' : `Класс ${cls}`;
+            scheduleClassFilter.appendChild(option);
         });
-   }
+    }
 
     // Добавляем option для выбора дня недели
-  function populateDayFilter() {
-        const days = ['Все','Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница'];
+    function populateDayFilter() {
+        const days = ['Все', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница'];
         days.forEach(day => {
-           const option = document.createElement('option');
-                option.value = day;
-                option.textContent = day === 'Все' ? 'Все дни' : day;
-               scheduleDayFilter.appendChild(option);
+            const option = document.createElement('option');
+            option.value = day;
+            option.textContent = day === 'Все' ? 'Все дни' : day;
+            scheduleDayFilter.appendChild(option);
         });
-   }
+    }
 
     //Загрузка расписания
-   function loadSchedule() {
+    function loadSchedule() {
         let schedule = JSON.parse(localStorage.getItem('schedule') || '[]');
-       const selectedClass = scheduleClassFilter.value;
+        const selectedClass = scheduleClassFilter.value;
         const selectedDay = scheduleDayFilter.value;
 
-       let filteredSchedule = schedule;
+        let filteredSchedule = schedule;
 
-      if (selectedClass !== 'Все') {
+        if (selectedClass !== 'Все') {
             filteredSchedule = filteredSchedule.filter(lesson => lesson.class === selectedClass);
         }
 
@@ -261,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-      // Обработчики событий для кнопок (delete, edit) - остаются без изменений
+        // Обработчики событий для кнопок (delete, edit) - остаются без изменений
         document.querySelectorAll('.delete-schedule').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.dataset.index);
@@ -276,9 +287,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-   // События для фильтров
+    // События для фильтров
     scheduleClassFilter.addEventListener('change', loadSchedule);
-   scheduleDayFilter.addEventListener('change', loadSchedule);
+    scheduleDayFilter.addEventListener('change', loadSchedule);
 
     // Функция для добавления урока
     addScheduleForm.addEventListener('submit', function(e) {
@@ -542,40 +553,41 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-   // Закрытие модальных окон
-   closeButton.forEach(button => {
-        button.addEventListener('click', function() {
-           this.closest('.modal').style.display = 'none';
-       });
-   });
 
-      // Заполнение фильтров при загрузке страницы
+    // Закрытие модальных окон
+    closeButton.forEach(button => {
+        button.addEventListener('click', function() {
+            this.closest('.modal').style.display = 'none';
+        });
+    });
+
+    // Заполнение фильтров при загрузке страницы
     function populateClassFilter() {
         const classes = ['Все', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
-       classes.forEach(cls => {
+        classes.forEach(cls => {
             const option = document.createElement('option');
             option.value = cls;
-           option.textContent = cls === 'Все' ? 'Все классы' : `Класс ${cls}`;
+            option.textContent = cls === 'Все' ? 'Все классы' : `Класс ${cls}`;
             scheduleClassFilter.appendChild(option);
-       });
-  }
+        });
+    }
 
     // Добавляем option для выбора дня недели
-   function populateDayFilter() {
-       const days = ['Все', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница'];
+    function populateDayFilter() {
+        const days = ['Все', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница'];
         days.forEach(day => {
-             const option = document.createElement('option');
-             option.value = day;
-             option.textContent = day === 'Все' ? 'Все дни' : day;
-             scheduleDayFilter.appendChild(option);
+            const option = document.createElement('option');
+            option.value = day;
+            option.textContent = day === 'Все' ? 'Все дни' : day;
+            scheduleDayFilter.appendChild(option);
         });
     }
 
     // События для фильтров
-     scheduleClassFilter.addEventListener('change', loadSchedule);
-     scheduleDayFilter.addEventListener('change', loadSchedule);
+    scheduleClassFilter.addEventListener('change', loadSchedule);
+    scheduleDayFilter.addEventListener('change', loadSchedule);
 
-      // Заполнение фильтров при загрузке страницы
+    // Вызываем функции для первоначальной загрузки данных
     populateClassFilter();
     populateDayFilter();
     loadUsers();
